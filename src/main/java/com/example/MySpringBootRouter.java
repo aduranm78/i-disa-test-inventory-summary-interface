@@ -25,7 +25,7 @@ public class MySpringBootRouter extends RouteBuilder {
     @Override
     public void configure() throws Exception {
     	
-    	String erpUri = "https://5298967-sb1.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=624&deploy=1";
+    	String erpUri = "https://5298967-sb1.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=668&deploy=1";
     	
     	onException(HttpOperationFailedException.class)
     		.handled(true)
@@ -40,13 +40,13 @@ public class MySpringBootRouter extends RouteBuilder {
     		.process(exchange -> {
     			String wmsUri = env.getProperty("wms.uri");
     			// String dateRange = WmsParams.getDateRange(60 * 60 * 24 * 90); // Poll interval in seconds (3 months)
-    			// String dateRange = WmsParams.getDateRange(30); // Poll interval in seconds (30 seconds)
+    			//String dateRange = WmsParams.getDateRange(30); // Poll interval in seconds (30 seconds)
     			String dateRange = WmsParams.getDateRange(60 * 60); // Poll interval in seconds (1 hour)
     			System.out.println();
     			System.out.println();
     			System.out.println("Periodo de consulta: " + dateRange);
     			String encodedDateRange = URLEncoder.encode(dateRange, "UTF-8");
-    	    	exchange.getMessage().setHeader(Exchange.HTTP_QUERY, "between=" + encodedDateRange);
+    	    	exchange.getMessage().setHeader(Exchange.HTTP_QUERY,"");
     	    	exchange.getMessage().setHeader(Exchange.HTTP_URI, wmsUri);
     		})
     		.to("log:DEBUG?showBody=true&showHeaders=true")
