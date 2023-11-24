@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import java.net.URLEncoder;
+//import java.net.URLEncoder;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -45,7 +45,7 @@ public class MySpringBootRouter extends RouteBuilder {
     			System.out.println();
     			System.out.println();
     			System.out.println("Periodo de consulta: " + dateRange);
-    			String encodedDateRange = URLEncoder.encode(dateRange, "UTF-8");
+    			//String encodedDateRange = URLEncoder.encode(dateRange, "UTF-8");
     	    	exchange.getMessage().setHeader(Exchange.HTTP_QUERY,"");
     	    	exchange.getMessage().setHeader(Exchange.HTTP_URI, wmsUri);
     		})
